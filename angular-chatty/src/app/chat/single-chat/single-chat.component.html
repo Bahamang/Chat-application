@@ -1,0 +1,33 @@
+
+<mat-card>
+
+  <div class="sticky-header">
+     <h1>Chat with: {{chat.profile.username}}</h1>
+  </div>
+  <div class="chat-container" #chatContainer>
+    <div *ngFor="let message of messages">
+      <div  [ngClass]=" this.message.senderProfile.id!=this.myProfile!.id ? 'message' : 'message-self'">
+        <mat-card-header>
+          <div mat-card-avatar class="example-header-image"
+               [style.background-image]=returnBackground(this.message.senderProfile.photo)></div>
+          <mat-card-title>{{message.senderProfile.username}}</mat-card-title>
+          <mat-card-subtitle> {{message.messageDate  | date: 'yyyy-MM-dd HH:mm'}} </mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>
+            {{message.text}}
+          </p>
+        </mat-card-content>
+      </div>
+    </div>
+  </div>
+  <mat-card-content>
+    <mat-form-field class="example-full-width">
+      <mat-label>Type your message</mat-label>
+      <textarea class="textarea" rows="9" cols="40" matInput placeholder="Ex. Hi, how are you?..." [(ngModel)]="your_message"></textarea>
+      <button matSuffix mat-icon-button mat-raised-button color="primary" aria-label="Clear" (click)="sendMessage()">
+        <mat-icon>label_important</mat-icon>
+      </button>
+    </mat-form-field>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,60 @@
+
+.example-header-image {
+  background-size: cover;
+}
+
+.sticky-header {
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white; /* Make sure the background is the same as the container */
+    text-align:center;
+    /* display:contents; */
+
+}
+
+.message{
+  background-color: #00cccc;
+  padding: 10px;
+  margin: 5px;
+  width: 40vw;
+  border: 2px solid;
+  border-radius: 25px;
+  border-color: #00008B;
+}
+
+.message-self{
+  background-color: #adebad;
+  padding: 10px;
+  margin: 5px;
+  width: 40vw;
+  border: 2px solid;
+  border-radius: 25px;
+  margin-right: 0px;
+  margin-left: auto;
+  display: block;
+  border-color: #00008B;
+}
+
+
+.example-full-width {
+  padding: 15px;
+  border-radius: 25px;
+  border: 2px solid;
+  border-color: #00008B;
+  width: 100%;
+  height: 20vh !important;
+}
+
+.textarea {
+   resize: none;
+ }
+
+.mat-card{
+  overflow-y: revert;  /* or hidden or auto */
+}
+
+.chat-container{
+  height: 60vh !important;
+  overflow-y: scroll;
+}

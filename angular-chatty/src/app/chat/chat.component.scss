@@ -1,0 +1,23 @@
+
+.example-card {
+  max-width: 400px;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+
+.sticky-button {
+  position: fixed;
+  right: 5vw;
+  top: 5vh;
+  z-index: 1000;
+}
+
+
+.center-me{
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}

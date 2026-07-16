@@ -1,0 +1,71 @@
+.example-card {
+  max-width: 400px;
+}
+
+.mat-card{
+  text-align: center;
+}
+
+.user{
+  display: flex;
+  text-align: center;
+  margin-left:25vw;
+}
+
+.example-header-image {
+  background-size: cover;
+}
+
+.post-image{
+  display: flex;
+  margin-left: 25vw;
+  width: 30vw;
+  height: 50vh;
+}
+
+.sticky-button {
+  position: fixed;
+  right: 5vw;
+  top: 5vh;
+  z-index: 1000;
+}
+
+
+.image{
+  width:  20vw;
+  height: 20vh;
+  min-width: 20vw;
+  max-width: 20vw;
+  min-height: 20vh;
+  max-height: 20vh;
+}
+
+img.mat-card-image {
+  z-index: 1;
+  transition: transform 0.25s ease;
+}
+
+img.mat-card-image.enlarged {
+  z-index: 10000;
+  transform: scale(1.5);
+}
+
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000; /* Ensure it's above other content */
+}
+
+.enlarged-image-container {
+  padding: 20px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

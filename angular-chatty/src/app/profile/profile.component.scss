@@ -1,0 +1,23 @@
+.mat-card{
+  display: flex;
+  justify-content: center;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 40vw;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 30vw;
+  max-width: 30vw;
+}
+
+.image{
+  width:  30vw;
+  height: 40vh;
+  min-width: 30vw;
+  max-width: 30vw;
+  min-height: 40vh;
+  max-height: 40vh;
+}

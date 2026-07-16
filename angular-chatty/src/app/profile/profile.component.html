@@ -1,0 +1,78 @@
+<div >
+  <mat-card *ngIf="this.profile">
+    <form class="example-form mt-5">
+
+      <div >
+        <div class="mb-2">
+          <picture>
+            <img class="image" [src]="this.image"  alt="Image" />
+          </picture>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-sm">
+
+          <mat-form-field class="example-full-width">
+            <mat-label>User Name</mat-label>
+            <input matInput placeholder="James Bonk" [(ngModel)]="this.profile!.username" name="nickname">
+          </mat-form-field>
+
+          <mat-form-field class="example-full-width">
+            <mat-label>What's your status</mat-label>
+            <textarea matInput [(ngModel)]="this.profile!.description" placeholder="Share your thoughts or ideas" name="status"></textarea>
+          </mat-form-field>
+        </div>
+      </div>
+      <mat-form-field class="example-full-width">
+        <mat-label>Occupation</mat-label>
+        <input matInput [(ngModel)]="this.profile!.occupation" placeholder="Set your occupation" name="description" >
+      </mat-form-field>
+
+      <form (ngSubmit)="onSubmit()" #imageForm="ngForm">
+        <input type="file" (change)="onFileSelected($event)" name="image" accept="image/*">
+        <button type="submit">Upload Image</button>
+      </form>
+
+      <button mat-button color="warn" (click)="openInfoDialog()">Change password</button>
+
+      <button mat-button color="primary" (click)="changePicture()">Change Picture</button>
+      <button mat-button color="primary" (click)="this.updateProfile()">Save</button>
+    </form>
+
+  </mat-card>
+</div>
+
+<ng-template let-data #passDialog >
+    <div style="text-align: center;">
+      <h2 mat-dialog-title>Information</h2>
+      <div mat-dialog-content>
+        <mat-form-field appearance="fill">
+          <input [type]="oldPassVisible ? 'text' : 'password'" matInput [(ngModel)]="data.oldPass" placeholder="Enter old password">
+          <button mat-icon-button matSuffix (click)="oldPassVisible = !oldPassVisible">
+            <mat-icon>{{oldPassVisible ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <input [type]="pass1Visible ? 'text' : 'password'" matInput [(ngModel)]="data.pass1" placeholder="Enter password">
+          <button mat-icon-button matSuffix (click)="pass1Visible = !pass1Visible">
+            <mat-icon>{{pass1Visible ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+        <br>
+        <mat-form-field appearance="fill">
+          <input [type]="pass2Visible ? 'text' : 'password'" matInput [(ngModel)]="data.pass2" placeholder="Repeat password">
+          <button  type="button"  mat-icon-button matSuffix (click)="pass2Visible = !pass2Visible">
+            <mat-icon>{{pass2Visible ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+        </mat-form-field>
+      </div>
+      <div mat-dialog-actions style="margin-left:auto;margin-right:auto;display:block;">
+        <button mat-button (click)="onCancelDialog()">Cancel</button>
+        <button mat-button color="primary"  (click)="acceptDialog(data)" cdkFocusInitial>Save</button>
+      </div>
+      <p *ngIf="!passwordMatching">Passwords not matching</p>
+      <p *ngIf="!oldPassMatching">Old password is wrong</p>
+    </div>
+  </ng-template>
+

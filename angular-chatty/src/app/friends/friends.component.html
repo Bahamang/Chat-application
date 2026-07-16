@@ -1,0 +1,22 @@
+<div>
+
+  <mat-card>
+    <button mat-raised-button color="primary" (click)="loadFriends()" [disabled]="viewingFriends">
+      Show Friends
+    </button>
+    <button mat-raised-button color="accent" (click)="loadOtherUsers()" [disabled]="!viewingFriends">
+      Show People to Add
+    </button>
+    <mat-list>
+      <mat-list-item *ngFor="let user of users">
+       <img matListAvatar [src]=loadImage(user.photo) alt="User Photo">
+        <h3 matLine>{{ user.username }}</h3>
+        <p matLine>
+          <button mat-button color="warn" *ngIf="viewingFriends" (click)="removeUser(user.id)">Remove</button>
+          <button mat-button *ngIf="!viewingFriends" (click)="addUser(user.id)">Add</button>
+        </p>
+      </mat-list-item>
+    </mat-list>
+
+  </mat-card>
+</div>

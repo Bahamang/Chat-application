@@ -1,0 +1,84 @@
+<div>
+  <mat-card>
+
+    <button mat-fab class="sticky-button"   >
+      <mat-icon  (click)="openProfileDialog()">add</mat-icon>
+
+    </button>
+
+    <div *ngIf="this.friendsChats && this.friendsChats.length">
+
+      <h1 class="center-me">Chats with your friends:</h1>
+      <mat-divider style="border-top-width: 10px !important; "></mat-divider>
+      <br>
+      <div *ngFor="let chat of this.friendsChats" >
+        <div  (click)="goToChat(chat.id)">
+
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"
+                 [style.background-image]=this.returnBackground(chat.profile?.photo)></div>
+            <mat-card-title>{{chat.profile.username}}</mat-card-title>
+            <mat-card-subtitle> {{chat.lastMessageTime  | date: 'yyyy-MM-dd HH:mm'}} </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content >
+            <!--make it clickable-->
+
+            <a>
+              <p *ngIf="chat.senderId==myProfile.id">You: </p>
+              <p *ngIf="chat.senderId!=myProfile.id">Incoming: </p>
+              {{chat.lastMessage}}
+            </a>
+          </mat-card-content>
+        </div>
+
+        <mat-divider style="border-top-width: 10px !important; "></mat-divider>
+        <br>
+      </div>
+    </div>
+
+    <div *ngIf="this.nonFriendsChats && this.nonFriendsChats.length">
+
+      <h1 class="center-me">Chats with other users:</h1>
+      <mat-divider style="border-top-width: 10px !important; "></mat-divider>
+      <br>
+      <div *ngFor="let chat of this.nonFriendsChats" >
+        <div  (click)="goToChat(chat.id)">
+
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"
+                 [style.background-image]=this.returnBackground(chat.profile?.photo)></div>
+            <mat-card-title>{{chat.profile.username}}</mat-card-title>
+            <mat-card-subtitle> {{chat.lastMessageTime  | date: 'yyyy-MM-dd HH:mm'}} </mat-card-subtitle>
+          </mat-card-header>
+          <mat-card-content >
+            <!--make it clickable-->
+
+            <a>
+              <p *ngIf="chat.senderId==myProfile.id">You: </p>
+              <p *ngIf="chat.senderId!=myProfile.id">Incoming: </p>
+              {{chat.lastMessage}}
+            </a>
+          </mat-card-content>
+        </div>
+
+        <mat-divider style="border-top-width: 10px !important; "></mat-divider>
+        <br>
+      </div>
+    </div>
+
+  </mat-card>
+</div>
+
+<ng-template #selectProfileTemplate let-dialogRef>
+  <h2>Select a profile to start chat</h2>
+  <mat-list>
+    <mat-list-item *ngFor="let profile of profiles" [mat-dialog-close]="true" (click)="selectProfile(profile, dialogRef)">
+
+      <div mat-card-avatar class="example-header-image"
+           [style.background-image]=loadImage(profile.photo)></div>
+      <div matLine>{{ profile.username }}</div>
+    </mat-list-item>
+  </mat-list>
+  <button mat-button [mat-dialog-close]="false">Cancel</button>
+</ng-template>
+

@@ -1,0 +1,10 @@
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* Use full viewport height */
+}
+
+form {
+  min-width: 300px; /* Adjust based on your preference */
+}

@@ -1,0 +1,75 @@
+<div>
+  <mat-card *ngIf="loaded">
+    <button mat-fab class="sticky-button" (click)="openDialog()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <div class="post" *ngFor="let post of posts">
+
+      <br>
+      <br>
+      <mat-card-header class="user">
+        <div mat-card-avatar class="example-header-image" [style.background-image]=this.returnBackground(post.profile?.photo)></div>
+        <mat-card-title>{{post.profile?.username}}</mat-card-title>
+        <mat-card-subtitle>{{post.created  | date: 'yyyy-MM-dd HH:mm'}}</mat-card-subtitle>
+      </mat-card-header>
+      <div *ngIf="post.media" class="post-image">
+        <img mat-card-image [src]="loadImage(post.media)" alt="Photo of a Shiba Inu" (click)="openEnlargedImage(loadImage(post.media))">
+      </div>
+
+          <mat-card-content>
+            <p>
+              {{post.text}}
+            </p>
+          </mat-card-content>
+      <br>
+      <br>
+      <mat-divider style="border-top-width: 10px !important; "></mat-divider>
+      <br>
+    </div>
+    <br>
+    <p style="text-align: center"> No new posts </p>
+  </mat-card>
+</div>
+
+
+
+<ng-template #createPostTemplate>
+  <h2 mat-dialog-title>Create New Post</h2>
+  <mat-dialog-content class="mat-typography">
+    <form #postForm="ngForm">
+
+      <div class="mb-2" style="width: 100%;height: 20vh !important;">
+        <picture>
+          <img class="image" [src]="this.image"  alt="Image" />
+        </picture>
+      </div>
+
+      <mat-form-field appearance="fill" style="width: 100%;">
+        <mat-label>Post Content</mat-label>
+        <textarea matInput placeholder="Type your post here (250+ characters)" minlength="250" required [(ngModel)]="postText" name="postContent"></textarea>
+      </mat-form-field>
+
+        <form (ngSubmit)="onSubmit()" #imageForm="ngForm">
+          <input type="file" (change)="onFileSelected($event)" name="image" accept="image/*">
+          <button type="submit">Upload Image</button>
+        </form>
+    </form>
+  </mat-dialog-content>
+
+  <mat-dialog-actions align="end">
+    <button mat-button (click)="clear()" [mat-dialog-close]="false">Cancel</button>
+    <button mat-button (click)="postMessage()" [mat-dialog-close]="true">Post</button>
+  </mat-dialog-actions>
+</ng-template>
+
+<ng-container *ngIf="isImageEnlarged">
+  <div class="backdrop" (click)="closeEnlargedImage()">
+    <ng-container *ngTemplateOutlet="enlargedImageTemplate; context: {$implicit: enlargedImageSrc}"></ng-container>
+  </div>
+</ng-container>
+
+<ng-template #enlargedImageTemplate let-imgSrc>
+  <div class="enlarged-image-container" (click)="$event.stopPropagation()">
+    <img [src]="imgSrc" alt="Enlarged Image" (click)="closeEnlargedImage()" style="max-width: 80vw; max-height: 80vh;">
+  </div>
+</ng-template>

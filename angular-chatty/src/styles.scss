@@ -1,0 +1,19 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+/* Importing Bootstrap SCSS file. */
+@import '~bootstrap/scss/bootstrap';
+
+
+.mat-drawer-container {
+    background-color: #1a566f !important;
+}
+
+.mat-card {
+    background: #e0e4e5 !important;
+}
+.mat-drawer {
+    background-color: #e0e4e5  !important;
+}

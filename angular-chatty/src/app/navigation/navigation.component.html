@@ -1,0 +1,36 @@
+<mat-sidenav-container class="nav-container">
+  <mat-sidenav *ngIf="!isLoginPage" class="navi" opened mode="side">
+
+    <mat-card-header style="top:0 !important;position: absolute; margin-top: 2vh;margin-left: 2vw;" class="user">
+      <div mat-card-avatar class="example-header-image" [style.background-image]=this.returnBackground(myProfile.photo)></div>
+      <mat-card-title style="color: blue;"  >Hello, {{myProfile.username}}</mat-card-title>
+    </mat-card-header>
+
+
+    <nav class="nav-routes mt-5"  >
+      <br><br>
+      <ul>
+        <p><button mat-button color="primary" routerLink="/main" routerLinkActive="active" style="margin-left: 4vh; font-size: 20px;" >Main</button></p>
+      </ul>
+      <ul>
+        <p>  <button mat-button color="primary" routerLink="/chat" routerLinkActive="active" style="margin-left: 4vh; font-size: 20px;">Chat</button></p>
+      </ul>
+
+
+
+
+      <ul>
+        <p>  <button mat-button color="primary" routerLink="/profile" routerLinkActive="active" style="margin-left: 4vh;  font-size: 20px;">Profile</button></p>
+      </ul>
+
+
+      <ul>
+        <p> <button mat-button color="primary" routerLink="/friends" routerLinkActive="active" style="margin-left: 4vh;font-size: 20px;">Friends</button>
+      </ul>
+    </nav>
+    <ul>
+      <p> <button mat-button color="primary"  (click)="logout()" style="margin-left: 4vh; font-size: 20px;"> Logout</button></p>
+    </ul>
+  </mat-sidenav>
+  <router-outlet></router-outlet>
+</mat-sidenav-container>
